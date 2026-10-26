@@ -23,8 +23,3 @@ Problem4_Bill_of_Materials/
 YouTube playlist: "Design Your Own Airplanes"
 https://youtube.com/playlist?list=PLpdZAunkELHiN85JpFReHTf-5X-gh6MhV
 
-## Before final submission checklist
-- [ ] Problem 1: add XFLR5 plots in `Problem1_Airfoil_Selection/answer/plots/` and update the numbers
-- [ ] Problem 2: add your own 5+ flight times, mean, and photos
-- [ ] Problem 4: paste real product links and prices
-- [ ] Check the "In the playlist?" tables in all `thought_process` files
