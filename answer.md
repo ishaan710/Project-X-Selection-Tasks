@@ -1,178 +1,72 @@
-# Problem 4 - Bill of Materials for an Electric RC Aircraft
+# Problem 1 - Airfoil Selection
 
-Prices are rough estimates in INR from Indian hobby shops and can change. Links are to be filled after I check each product page.
+(Values are approximate for small RC wings at Re around 200,000 to 300,000. I will update them with my XFLR5 results.)
 
-## Aircraft requirements
+## Aircraft A (maximum payload, stable)
 
-- electric, single motor, fixed wing
-- wingspan 1.0 to 1.2 m, high wing, conventional tail
-- 2.4 GHz wireless control
-- takeoff mass around 700 to 850 g
+For a heavy plane I need a lot of lift at low speed, a soft stall, and easy balance.
 
-## Components
+Airfoils I looked at:
 
-1. Airframe (foam board or kit)
-2. Brushless motor
-3. Propeller
-4. ESC (speed controller)
-5. LiPo battery
-6. Servos (4)
-7. Transmitter and receiver
-8. Battery charger
-9. Connectors, wires, extension leads
-10. Control horns, pushrods, hinges
-11. Landing gear (wheels and wire)
-12. Glue, tape, covering film
-13. Motor mount
-14. Safety items: LiPo bag
+| | Clark Y | NACA 4412 | Selig S1223 |
+|---|---|---|---|
+| Thickness | about 11.7% | 12% | about 12% |
+| Camber | about 3.5% (flat bottom) | 4% | about 8.7% |
+| CLmax | about 1.3 to 1.5 | about 1.4 to 1.6 | 2.0 or more |
+| Drag | low to medium | low to medium | high |
+| L/D | good | good | medium |
+| Stall | soft | fairly soft | can be sudden |
+| Nose-down moment | small | medium | very large |
+| Building | very easy | easy | hard |
 
-## Alternatives for main parts
+I selected Clark Y. It gives enough lift and has low drag. The stall is gentle, which is good for a slow, heavy plane. Its pitching moment is small, so the tail does not have to work too hard. The flat bottom is also easy to build.
 
-Airframe
+S1223 gives the most lift, but the drag is high and the nose-down moment is very large. So I would need a bigger tail, and that adds weight.
 
-| | Option 1: DIY foam board | Option 2: ready foam/EPP kit |
+## Aircraft B (maneuverability)
+
+For tricks like rolls and loops I need a wing that behaves the same upright and inverted.
+
+| | NACA 0009 | NACA 0012 | NACA 2412 |
+|---|---|---|---|
+| Thickness | 9% | 12% | 12% |
+| Camber | 0% | 0% | 2% |
+| CLmax | about 1.0 to 1.2 | about 1.1 to 1.3 | about 1.4 |
+| Drag | lowest | low | low |
+| Zero lift angle | 0 deg | 0 deg | about -2 deg |
+| Stall | sharp | medium | gentle |
+| Inverted flight | same as upright | same as upright | worse |
+
+I selected NACA 0012. It is symmetric, so inverted flight feels the same as normal flight. It gives zero lift at zero angle, so the response is easy to predict. It is thick enough to be strong and to fit a spar, but the drag is still low. NACA 0009 has less drag but it is weaker and stalls more suddenly.
+
+## Comparing the two selected airfoils
+
+| | Clark Y (A) | NACA 0012 (B) |
 |---|---|---|
-| Qty | 2 to 3 sheets | 1 kit |
-| Price | Rs 600 to 1,200 | Rs 2,500 to 5,000 |
-| Good | cheap, easy to repair | faster, better finish |
-| Bad | takes building time | costs more |
-| Source | local craft shop / Amazon.in | online RC shops |
-| Link | | |
+| Camber | about 3.5% | 0% |
+| Thickness | 11.7% | 12% |
+| CLmax | higher | lower |
+| Best L/D | higher | lower |
+| Stall | gentle | medium |
+| Suited for | slow, heavy flight | aerobatics |
 
-Motor
+## Can one airfoil do both jobs?
 
-| | Option 1: 2212 about 1000 KV | Option 2: 2820 about 1100 KV |
-|---|---|---|
-| Specs | 3S, about 55 g, 15 to 20 A | 3S, about 80 g, 20 to 25 A |
-| Qty | 1 | 1 |
-| Price | Rs 500 to 900 | Rs 900 to 1,600 |
-| Good | cheap and light | more thrust |
-| Bad | little thrust margin | heavier, more current |
-| Link | | |
+Partly. A semi-symmetric airfoil like NACA 2412 can do light aerobatics and carry some load. But it gives less lift than Clark Y and works worse upside down than NACA 0012. So it is a compromise. If the two missions are very different, two different airfoils are better. One airfoil is fine if we want a simple and cheap design.
 
-ESC
+## Airfoil traits and whole-aircraft factors
 
-| | Option 1: 30 A with BEC | Option 2: 40 A with BEC |
-|---|---|---|
-| Qty | 1 | 1 |
-| Price | Rs 500 to 900 | Rs 800 to 1,400 |
-| Good | light, enough for 2212 | more safety margin |
-| Bad | less margin | heavier |
-| Link | | |
+Airfoil traits: camber, thickness, CLmax, stall behaviour, Cd, pitching moment, zero-lift angle.
 
-Propeller
+Whole-aircraft factors: wing area and wing loading, aspect ratio, tail size and tail arm, CG position, motor power and propeller, control surface size, total weight.
 
-| | Option 1: 9x4.7 | Option 2: 10x4.5 |
-|---|---|---|
-| Qty | 2 | 2 |
-| Price | Rs 80 to 200 each | Rs 80 to 200 each |
-| Good | higher RPM, less current | more thrust at low speed |
-| Bad | less static thrust | more current |
-| Link | | |
+Example: Aircraft B can have a good airfoil, but if the CG is too far back it will still be unstable. Aircraft A can have a good airfoil, but if the wing area is too small it cannot lift the payload.
 
-Battery
+## Bonus: XFLR5
 
-| | Option 1: 3S 2200 mAh | Option 2: 3S 1800 mAh |
-|---|---|---|
-| Qty | 1 | 1 |
-| Price | Rs 1,200 to 2,000 | Rs 900 to 1,500 |
-| Good | longer flight | lighter |
-| Bad | heavier (about 185 g) | shorter flight |
-| Link | | |
+Steps I will follow:
+1. Load the airfoil .dat files in XFLR5.
+2. Run XFoil direct analysis at Re = 200,000 and 300,000, angles -5 to 15 degrees.
+3. Save plots of CL vs alpha, CD vs alpha, drag polar, and CL/CD vs alpha.
 
-Servos
-
-| | Option 1: SG90 | Option 2: MG90S |
-|---|---|---|
-| Qty | 4 | 4 |
-| Price | Rs 80 to 150 each | Rs 180 to 350 each |
-| Good | cheap and light | metal gears, lasts longer |
-| Bad | plastic gears wear | costs more |
-| Link | | |
-
-Transmitter and receiver
-
-| | Option 1: FlySky FS-i6 + iA6B | Option 2: FlySky FS-CT6B |
-|---|---|---|
-| Qty | 1 set | 1 set |
-| Price | Rs 3,500 to 5,000 | Rs 3,000 to 4,500 |
-| Good | popular, good range, lots of help online | cheaper |
-| Bad | costs more | older, fewer features |
-| Link | | |
-
-Charger
-
-| | Option 1: iMAX B6 type | Option 2: simple 3S balance charger |
-|---|---|---|
-| Price | Rs 1,500 to 2,800 | Rs 600 to 1,200 |
-| Good | many battery types, safe | cheap |
-| Bad | costs more | fewer features |
-| Link | | |
-
-Small parts (one set): control horns and pushrods Rs 150 to 300, hinges Rs 50 to 100, motor mount Rs 100 to 250, wheels and landing gear wire Rs 150 to 350, XT60 connectors and extension leads Rs 150 to 300, foam-safe glue and tape Rs 200 to 400, covering film Rs 100 to 250, LiPo safe bag Rs 150 to 300.
-
-## Why I chose these
-
-- Foam board is cheap and easy to repair after a crash.
-- A 2212 motor with a 9x4.7 or 10x4.5 propeller gives enough thrust for a plane of about 700 g and is light and cheap.
-- The motor draws about 15 to 20 A, so a 30 A ESC is a safe choice.
-- A 3S 2200 mAh battery is a good balance between flight time and weight.
-- SG90 is for budget, MG90S is for performance because metal gears last longer.
-- FlySky FS-i6 is widely used and easy to find help for.
-
-## Total cost
-
-Budget configuration
-
-| Item | Choice | Rs |
-|---|---|---|
-| Airframe | DIY foam board | 900 |
-| Motor | 2212 1000 KV | 600 |
-| ESC | 30 A | 600 |
-| Props (2) | 9x4.7 | 200 |
-| Battery | 3S 1800 mAh | 1,000 |
-| Servos (4) | SG90 | 400 |
-| Radio | FS-CT6B | 3,200 |
-| Charger | simple 3S | 700 |
-| Small parts | | 1,300 |
-| Total | | about 8,900 |
-
-Performance configuration
-
-| Item | Choice | Rs |
-|---|---|---|
-| Airframe | EPP/foam kit | 4,000 |
-| Motor | 2820 1100 KV | 1,300 |
-| ESC | 40 A | 1,100 |
-| Props (2) | 10x4.5 | 300 |
-| Battery (2) | 3S 2200 mAh | 3,200 |
-| Servos (4) | MG90S | 1,000 |
-| Radio | FS-i6 + iA6B | 4,500 |
-| Charger | iMAX B6 type | 2,200 |
-| Small parts | | 1,800 |
-| Total | | about 19,400 |
-
-(I will recalculate these after putting the real prices.)
-
-## Bonus: takeoff mass and propulsion
-
-Budget configuration:
-
-| Item | Mass (g) |
-|---|---|
-| Airframe | 250 |
-| Motor + mount | 65 |
-| ESC | 25 |
-| Propeller | 12 |
-| Battery 3S 1800 mAh | 150 |
-| 4 servos | 36 |
-| Receiver | 15 |
-| Landing gear | 30 |
-| Wires, glue, horns | 40 |
-| Total | about 620 |
-
-Thrust: a 2212 1000 KV motor with a 9x4.7 prop on 3S gives about 800 to 900 g static thrust (I will check the seller's thrust table). Thrust to weight = 850 / 620 = about 1.35. Above 1.2 is comfortable for a trainer, so the propulsion is enough.
-
-Wing: span 1.1 m and chord 0.2 m give area 0.22 m2 = 22 dm2. Wing loading = 620 g / 22 dm2 = about 28 g/dm2, which is normal for a trainer.
-
-If the real weight goes above about 800 g I will switch to the performance motor and the 10x4.5 propeller.
+Plots go in the `plots` folder (to be added after I run it).
